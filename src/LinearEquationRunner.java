@@ -12,12 +12,20 @@ public class LinearEquationRunner {
         System.out.print("Enter coordinate 2: ");
         String coord2 = input.nextLine();
         int x2 = Integer.parseInt(coord2.substring(1, coord2.indexOf(",")));
-        int y2 = Integer.parseInt(coord2.substring(coord2.indexOf(",") + 2, coord1.length() - 1));
+        int y2 = Integer.parseInt(coord2.substring(coord2.indexOf(",") + 2, coord2.length() - 1));
+
+        System.out.println();
 
         LinearEquation equation = new LinearEquation(x1,y1,x2,y2);
-        System.out.println("distance: " + equation.distance());
-        System.out.println("slope: " + equation.slope());
-        System.out.println("yIntercept: " + equation.yIntercept());
+        System.out.println(equation.lineInfo());
+
+        System.out.println();
+
+        System.out.print("Enter a value for x: ");
+        double xValue = input.nextDouble();
+        String pointOnLine = equation.coordinateForX(xValue);
+        System.out.println();
+        System.out.println("The point on the line is: " + pointOnLine);
 
     }
 }
