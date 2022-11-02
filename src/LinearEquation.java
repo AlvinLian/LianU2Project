@@ -5,11 +5,7 @@ public class LinearEquation {
     private int x2;
     private int y2;
 
-
-    /* Creates a LinearEquation object */
-/* PRECONDITION: x1 and x2 are NOT equal (client programs are responsible for ensuring
-   this precondition is not violated) */
-
+    // constructor used to create LinearEquation objects
     public LinearEquation(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
         this.y1 = y1;
@@ -17,54 +13,34 @@ public class LinearEquation {
         this.y2 = y2;
     }
 
-
-    /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
-       the nearest hundredth */
+    // method that returns the distance between (x1, y1) and (x2, y2) to the nearest hundredth
     public double distance() {
         double distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         return roundedToHundredth(distance);
     }
 
-
-    /* Calculates and returns the y-intercept of the line between (x1, y1) and
-       (x2, y2), rounded to the nearest hundredth */
+    // method that returns the y-intercept of the line between (x1, y1) and (x2, y2), rounded to the nearest hundredth
     public double yIntercept() {
         double yIntercept = (double) y1 - (slope() * x1);
         return roundedToHundredth(yIntercept);
     }
 
-
-    /* Calculates and returns the slope of the line between (x1, y1) and
-       (x2, y2), rounded to the nearest hundredth */
+    // method that returns the slope of the line between (x1, y1) and (x2, y2), rounded to the nearest hundredth
     public double slope() {
         double slope = (double) (y2 - y1) / (x2 - x1);
         return roundedToHundredth(slope);
     }
 
-    /* Returns a String that represents the linear equation of the line through points
-   (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5".
 
-    When generating the m value (slope), here are examples of "printable" slopes:
-       5, -5, 1/2, 6/8 (reducing not required), 8/5, -2/3, -18/7
-
-    Here are non-examples of "printable" slopes:
- 1/-2 (should be -1/2), -4/-3 (should be 4/3), 8/4 (should be reduced to 2),
-       -12/3 (should be -4), 3/3 (should be 1), -6/6 (should be -1)
-
-    HINT: Be sure to check if the line is horizontal and return an appropriate string,
-    e.g. y = 6
-    HINT: Absolute value might be helpful for ensuring proper placement of negative sign!
-
-
-    When generating the b value, here are some examples of "printable" y-intercepts:
-       + 1.0 	- 2.35	      + 12.5		- 8.0		+ 17.19
-
-    Here are non-examples of "printable" y-intercepts:
-       - -1.0 	+ -2.35	- -12.5	+ -8.0	     - -17.19	+ 0	- 0
-
-    HINT: Absolute value might be helpful for printing negative y-intercepts as
-           subtraction!
- */
+    // Returns a String that represents the linear equation of the line through points
+    //   (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form
+    // The slopes are checked first if they are equal to 0, less than 0, or greater than 0
+    // Slopes are then checked to see if they are equal to 1,
+    // whole numbers with 0 after decimal point like 4.0, or decimals like 3.35
+    // Slopes equal to 1 are not printed; slopes equal to whole numbers with 0 after decimal point are printed
+    // as an integer; decimals are printed as fractions
+    // Within each of those slope conditions above, the y-intercepts are also checked to see
+    // if they are positive, negative, or zero
     public String equation() {
         String equation = "y = ";
         double slope = slope();
@@ -130,9 +106,7 @@ public class LinearEquation {
         return equation;
     }
 
-
-/* Returns a String of the coordinate point on the line that has the given x value, with
-   both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
+    // method that returns a coordinate with a given x value and the corresponding y value on the line, both values rounded to the nearest hundredth
     public String coordinateForX(double xValue) {
         double yValue = roundedToHundredth(slope() * xValue + yIntercept());
         String coordinate = "(" + xValue + ", " + yValue + ")";
@@ -140,28 +114,13 @@ public class LinearEquation {
     }
 
 
-    /* "Helper" method for use elsewhere in your methods; returns the value toRound rounded
-        to the nearest hundredth
-
-        HINT:  the Math.round method can help with this!
-     */
+    // method that rounds a double input of parameter toRounded to the nearest hundredth
     public double roundedToHundredth(double toRound) {
         return Math.round(toRound * 100) / 100.0;
     }
 
 
-    /* Returns a string that includes all information about the linear equation, each on
-       separate lines:
-         - The original points: (x1, y1) and (x2, y2)
-         - The equation of the line in y = mx + b format (using equation() method)
-         - The slope of the line, as a decimal (using slope() method)
-         - The y-intercept of the line (using yIntercept() method)
-         - The distance between the two points (using distance() method)
-
-      This method should call all other appropriate methods to get the info it needs:
-      equation(), slope(), yIntercept(), distance().
-
-      */
+    // method that returns the original points, equation in y = mx + b, slope, y-intercept, and distance regarding the (x1, y1) and (x2, y2)
     public String lineInfo() {
         String str = "The Original points: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")\n";
         str += "The equation of the line between these points is: " + equation() + "\n";
