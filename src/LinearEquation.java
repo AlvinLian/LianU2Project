@@ -120,7 +120,7 @@ public class LinearEquation {
     }
 
 
-    // method that returns the original points, equation in y = mx + b, slope, y-intercept, and distance regarding the (x1, y1) and (x2, y2)
+    // method that returns the original points, equation in y = mx + b, slope, y-intercept, and distance regarding the points (x1, y1) and (x2, y2)
     public String lineInfo() {
         String str = "The Original points: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")\n";
         str += "The equation of the line between these points is: " + equation() + "\n";
